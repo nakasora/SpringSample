@@ -5,7 +5,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Data
-@Entity
 @Table(name = "brand")
 public class Brand {
 
