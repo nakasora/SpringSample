@@ -1,0 +1,1 @@
+INSERT INTO brand VALUES('1', '001', 'XXX銘柄', '1.11', '20200101', '11');
