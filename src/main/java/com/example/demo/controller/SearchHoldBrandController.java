@@ -14,14 +14,9 @@ import java.util.List;
 /**
  * 保有銘柄一覧取得_Controller
  */
-@SpringBootApplication
 @RestController
 @RequiredArgsConstructor
 public class SearchHoldBrandController {
-
-    public static void main(String[] args) {
-        SpringApplication.run(SearchHoldBrandController.class, args);
-    }
 
     private final SearchHoldBrandService service;
 

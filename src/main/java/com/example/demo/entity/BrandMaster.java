@@ -26,4 +26,12 @@ public class BrandMaster {
      */
     @Column(name = "brand_name")
     private String brandName;
+
+    /**
+     * 保有銘柄
+     */
+    @ManyToOne
+    @JoinColumn(name = "brand_code", referencedColumnName = "brand_code", insertable = false, updatable = false)
+    @Fetch(FetchMode.JOIN)
+    private HoldBrand holdBrand;
 }

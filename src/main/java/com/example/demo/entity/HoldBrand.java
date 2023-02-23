@@ -1,7 +1,9 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -13,6 +15,8 @@ import java.math.RoundingMode;
  */
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "hold_brand")
 public class HoldBrand {
 
@@ -42,14 +46,6 @@ public class HoldBrand {
     private BigDecimal marketPrice;
 
     /**
-     * 銘柄マスタ
-     */
-    @OneToMany
-    @JoinColumn(name = "brand_code", referencedColumnName = "brand_code", insertable = false, updatable = false)
-    @Fetch(FetchMode.JOIN)
-    private BrandMaster brandMaster;
-
-    /**
      * 評価損益計算
      * @return 評価損益
      */
@@ -64,4 +60,19 @@ public class HoldBrand {
         if (this.marketPrice == null) return false;
         return  true;
     }
+
+    public static HoldBrand of(String brandCode) {
+        return new HoldBrand(brandCode,new BigDecimal(0),new BigDecimal(0),new BigDecimal(0));
+    }
+
+    public BigDecimal addQuantity(BigDecimal quantity) {
+        return this.quantity.add(quantity);
+    }
+
+    public boolean isPositiveQuantity() {
+        if (this.quantity.compareTo(BigDecimal.ZERO) < 0) return false;
+        return true;
+    }
+
+
 }
